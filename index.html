@@ -209,6 +209,7 @@
             max-width: 1200px;
             margin-left: auto;
             margin-right: auto;
+            width: calc(100% - 30px);
         }
 
         .certification-content h2 {
@@ -698,6 +699,7 @@
         @media (max-width: 991px) {
             .hero {
                 padding: 100px 0 160px;
+                background-position: 70% center;
             }
             
             .hero-content h1 {
@@ -713,17 +715,19 @@
             .solutions-grid {
                 grid-template-columns: 1fr 1fr;
                 gap: 20px;
+                width: 100%;
             }
             
             .solutions-section {
-                padding: 0 15px;
+                padding: 0 20px;
+                margin-top: 80px;
             }
             
             .certification-section {
                 padding: 40px 30px;
-                margin-left: 15px;
-                margin-right: 15px;
-                width: auto;
+                margin-left: auto;
+                margin-right: auto;
+                width: calc(100% - 40px);
             }
             
             .hero-content,
@@ -766,6 +770,12 @@
                 display: none;
             }
             
+            .hero {
+                padding: 80px 0 120px;
+                background-position: 80% center;
+                background-size: cover;
+            }
+            
             .hero-content h1 {
                 font-size: 36px;
             }
@@ -777,18 +787,21 @@
             }
             
             .solutions-section {
-                padding: 0 10px;
+                padding: 0 20px;
+                margin-top: 60px;
             }
             
             .certification-section {
                 padding: 30px 20px;
-                margin-left: 10px;
-                margin-right: 10px;
+                margin-left: auto;
+                margin-right: auto;
+                width: calc(100% - 40px);
+                gap: 30px;
             }
             
             .section-header {
-                margin-bottom: 50px;
-                padding: 30px 20px;
+                margin-bottom: 40px;
+                padding: 25px 20px;
             }
             
             .footer-links {
@@ -806,6 +819,87 @@
             
             .solution-card {
                 padding: 25px;
+                width: 100%;
+                min-height: auto;
+                margin-bottom: 15px;
+            }
+            
+            .solution-card h3 {
+                font-size: 20px;
+                margin-bottom: 12px;
+            }
+            
+            .solution-card p {
+                font-size: 16px;
+            }
+            
+            .solutions-grid {
+                width: 100%;
+                padding: 0;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                background-position: 75% center;
+            }
+            
+            .hero-content h1 {
+                font-size: 32px;
+            }
+            
+            .hero-content .subtitle {
+                font-size: 18px;
+            }
+            
+            .cta-group {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .primary-button, .secondary-button {
+                width: 100%;
+            }
+            
+            .solutions-section .section-header {
+                padding: 20px 15px;
+            }
+            
+            .solutions-section .section-header h2 {
+                font-size: 28px;
+            }
+            
+            .solutions-grid {
+                gap: 12px;
+            }
+            
+            .solution-card {
+                padding: 20px;
+            }
+            
+            .certification-section {
+                padding: 25px 15px;
+                width: calc(100% - 30px);
+            }
+            
+            .certification-content h2 {
+                font-size: 28px;
+                margin-bottom: 15px;
+            }
+            
+            .certification-content p {
+                font-size: 16px;
+                margin-bottom: 20px;
+            }
+            
+            .certification-benefits li {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+            
+            .badge-placeholder {
+                min-height: 200px;
             }
         }
 
@@ -948,6 +1042,7 @@
             max-width: 1200px;
             margin-left: auto;
             margin-right: auto;
+            padding: 0 15px;
         }
 
         .solutions-section .section-header {
@@ -983,6 +1078,7 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
             margin: 0 auto;
+            width: 100%;
         }
 
         .solution-card {
@@ -997,6 +1093,9 @@
             display: flex;
             flex-direction: column;
             height: 100%;
+            width: 100%;
+            overflow: hidden;
+            word-wrap: break-word;
         }
 
         .solution-card:hover {
