@@ -21,6 +21,12 @@
             --shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
             --border-radius: 12px;
             --transition: all 0.3s ease;
+            --header-height: 80px; /* Added header height variable */
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--header-height); /* Add padding for fixed header */
         }
 
         * {
@@ -115,6 +121,7 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            height: var(--header-height); /* Set height to match variable */
         }
 
         nav {
@@ -858,7 +865,7 @@
         .form-input {
             width: 100%;
             padding: 12px 16px;
-            border: 1px solid rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.5);
             border-radius: 8px;
             font-size: 16px;
             font-family: 'Inter', sans-serif;
@@ -1249,6 +1256,22 @@
                     formMessage.classList.remove('success');
                 }, 5000);
             }
+            
+            // Smooth scroll with offset for navigation links
+            document.querySelectorAll('.nav-links a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80, // 80px offset for header
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
         });
     </script>
 </body>
