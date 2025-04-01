@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataNova - Environmentally Conscious AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2E7D32; /* Green that represents environmental focus */
+            --primary-light: #4CAF50;
+            --primary-dark: #1B5E20;
+            --secondary-color: #00BFA5; /* Teal accent for highlights */
+            --text-dark: #1A2B33;
+            --text-light: #546E7A;
+            --text-white: #FFFFFF;
+            --background-light: #F5F7FA;
+            --background-white: #FFFFFF;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: var(--background-white);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Button Styles */
+        button {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .primary-button {
+            background-color: var(--primary-color);
+            color: var(--text-white);
+            padding: 14px 28px;
+            box-shadow: var(--shadow);
+        }
+
+        .primary-button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .secondary-button {
+            background-color: transparent;
+            color: var(--primary-color);
+            padding: 14px 28px;
+            border: 2px solid var(--primary-color);
+        }
+
+        .secondary-button:hover {
+            background-color: rgba(46, 125, 50, 0.1);
+        }
+
+        .cta-button {
+            background-color: var(--primary-color);
+            color: var(--text-white);
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--background-white);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--primary-color);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 180px;
+            background: linear-gradient(135deg, #F5F7FA 0%, #E8F5E9 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            right: -5%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(76, 175, 80, 0.1) 0%, rgba(76, 175, 80, 0) 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -10%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 191, 165, 0.1) 0%, rgba(0, 191, 165, 0) 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-main {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 120px;
+        }
+
+        .hero-content h1 {
+            font-size: 56px;
+            line-height: 1.1;
+            font-weight: 800;
+            margin-bottom: 24px;
+            color: var(--text-dark);
+            letter-spacing: -1px;
+        }
+
+        .hero-content h1 span {
+            display: block;
+            color: var(--primary-color);
+        }
+
+        .hero-content .subtitle {
+            font-size: 22px;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            max-width: 90%;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 16px;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 480px;
+            background: linear-gradient(135deg, #4CAF50 0%, #00BFA5 100%);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-white);
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .image-placeholder::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+            top: -25%;
+            left: -25%;
+            animation: pulse 8s infinite ease-in-out;
+        }
+
+        .hero-features {
+            margin-top: 60px;
+        }
+
+        .hero-section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+
+        .hero-section-header h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-section-header p {
+            font-size: 20px;
+            color: var(--text-light);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* About Section */
+        .about {
+            padding: 120px 0;
+            background-color: var(--background-white);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 80px;
+        }
+
+        .section-header h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .section-header p {
+            font-size: 20px;
+            color: var(--text-light);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background-color: var(--background-white);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 42px;
+            margin-bottom: 24px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 16px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            font-size: 17px;
+            line-height: 1.6;
+        }
+
+        /* Certification Section */
+        .certification {
+            padding: 120px 0;
+            background-color: var(--background-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .certification::before {
+            content: '';
+            position: absolute;
+            top: 5%;
+            left: -5%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(76, 175, 80, 0.08) 0%, rgba(76, 175, 80, 0) 70%);
+            border-radius: 50%;
+        }
+
+        .certification .container {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .certification-content h2 {
+            font-size: 42px;
+            margin-bottom: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .certification-content p {
+            margin-bottom: 36px;
+            color: var(--text-light);
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .certification-benefits {
+            margin-bottom: 40px;
+        }
+
+        .certification-benefits li {
+            margin-bottom: 14px;
+            position: relative;
+            padding-left: 36px;
+            font-size: 18px;
+        }
+
+        .certification-benefits li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .badge-placeholder {
+            width: 100%;
+            height: 380px;
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--secondary-color) 100%);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 120px 0;
+            background-color: var(--background-white);
+        }
+
+        .testimonials .section-header {
+            margin-bottom: 60px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .testimonial-card {
+            background-color: var(--background-white);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .testimonial-text {
+            font-size: 18px;
+            line-height: 1.6;
+            color: var(--text-dark);
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-light);
+            margin-right: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .author-info h4 {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .author-info p {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        /* Solutions Section */
+        .solutions {
+            padding: 120px 0;
+            background-color: var(--background-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .solutions::after {
+            content: '';
+            position: absolute;
+            bottom: -10%;
+            right: -5%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(0, 191, 165, 0.08) 0%, rgba(0, 191, 165, 0) 70%);
+            border-radius: 50%;
+        }
+
+        .solutions-grid {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .solution-card {
+            background-color: var(--background-white);
+            padding: 36px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .solution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .solution-card h3 {
+            margin-bottom: 16px;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .solution-card p {
+            color: var(--text-light);
+            font-size: 17px;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 120px 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--text-white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+        }
+
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            right: -10%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+        }
+
+        .cta-section .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h2 {
+            font-size: 48px;
+            margin-bottom: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .cta-section p {
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 20px;
+            opacity: 0.9;
+        }
+
+        .cta-section .primary-button {
+            background-color: white;
+            color: var(--primary-dark);
+            padding: 16px 32px;
+            font-size: 18px;
+        }
+
+        .cta-section .primary-button:hover {
+            background-color: var(--background-light);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1A2B33;
+            color: white;
+            padding: 80px 0 32px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo p {
+            margin-top: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 16px;
+            max-width: 300px;
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .link-group h4 {
+            margin-bottom: 24px;
+            font-size: 18px;
+            color: white;
+            font-weight: 600;
+        }
+
+        .link-group ul li {
+            margin-bottom: 12px;
+        }
+
+        .link-group ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .link-group ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icon {
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 991px) {
+            .hero {
+                padding: 100px 0 140px;
+            }
+            
+            .hero-content h1 {
+                font-size: 42px;
+            }
+            
+            .hero-main,
+            .certification .container,
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-content, 
+            .certification-content,
+            .footer-logo {
+                text-align: center;
+                margin-bottom: 40px;
+            }
+            
+            .hero-content .subtitle {
+                max-width: 100%;
+            }
+            
+            .cta-group {
+                justify-content: center;
+            }
+
+            .hero-main {
+                margin-bottom: 80px;
+            }
+            
+            .certification-benefits {
+                max-width: 500px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .section-header h2, 
+            .hero-section-header h2 {
+                font-size: 36px;
+            }
+            
+            .footer-links {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content h1 {
+                font-size: 36px;
+            }
+            
+            .features,
+            .solutions-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-header {
+                margin-bottom: 50px;
+            }
+            
+            .footer-links {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .cta-section h2 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">DataNova</div>
+                <ul class="nav-links">
+                    <li><a href="#hero">About</a></li>
+                    <li><a href="#certification">Certification</a></li>
+                    <li><a href="#solutions">Solutions</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                </ul>
+                <button class="cta-button">Get Started</button>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero" class="hero">
+        <div class="container">
+            <div class="hero-main">
+                <div class="hero-content">
+                    <h1>The Future of <span>Sustainable AI</span> Starts Here</h1>
+                    <p class="subtitle">We help companies make their AI carbon neutral, sustainable, and environmentally responsible with our breakthrough certification program.</p>
+                    <div class="cta-group">
+                        <button class="primary-button">Get Certified</button>
+                        <button class="secondary-button">View Demo</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="image-placeholder">
+                        [Placeholder for hero image showing sustainable AI visualization]
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-features">
+                <div class="hero-section-header">
+                    <h2>Pioneering Sustainable AI</h2>
+                    <p>At DataNova, we're on a mission to transform the AI industry by making sustainability a core principle of development and operation.</p>
+                </div>
+                <div class="features">
+                    <div class="feature-card">
+                        <div class="feature-icon">🌱</div>
+                        <h3>Carbon-Neutral AI</h3>
+                        <p>We help you measure, reduce, and offset the carbon footprint of your AI operations with precise metrics and actionable insights.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Energy Efficiency</h3>
+                        <p>Optimize your AI models for maximum energy efficiency without sacrificing performance through our advanced analysis tools.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔄</div>
+                        <h3>Sustainable Infrastructure</h3>
+                        <p>Transition to renewable energy sources and sustainable computing resources with our expert guidance and partnerships.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certification" class="certification">
+        <div class="container">
+            <div class="certification-content">
+                <h2>Green AI Certification</h2>
+                <p>Our comprehensive certification program validates that your AI systems meet the highest standards of environmental responsibility, giving you a competitive edge in an increasingly eco-conscious market.</p>
+                <ul class="certification-benefits">
+                    <li>Reduce environmental impact with measurable targets</li>
+                    <li>Build consumer trust through transparent sustainability metrics</li>
+                    <li>Stay ahead of emerging environmental regulations</li>
+                    <li>Join a community of forward-thinking organizations leading the change</li>
+                </ul>
+                <button class="primary-button">Learn About Certification</button>
+            </div>
+            <div class="certification-badge">
+                <div class="badge-placeholder">
+                    Green AI Certification Badge
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Our Partners Say</h2>
+                <p>Join the growing community of organizations committed to environmentally responsible AI</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"DataNova's certification helped us reduce our AI carbon footprint by 45% while improving our brand reputation with environmentally conscious customers."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JD</div>
+                        <div class="author-info">
+                            <h4>Jane Doe</h4>
+                            <p>CTO, TechFuture Inc.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The detailed assessment and recommendations from DataNova transformed how we approach AI development, making sustainability a core value of our company."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MS</div>
+                        <div class="author-info">
+                            <h4>Mark Smith</h4>
+                            <p>Director of AI, GreenTech Solutions</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Working with DataNova not only helped us achieve our sustainability goals but also improved the efficiency of our AI models. It's been a win-win partnership."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AP</div>
+                        <div class="author-info">
+                            <h4>Aisha Patel</h4>
+                            <p>CEO, Innovate AI</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="solutions" class="solutions">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Solutions</h2>
+                <p>Comprehensive approaches to make your AI environmentally responsible</p>
+            </div>
+            <div class="solutions-grid">
+                <div class="solution-card">
+                    <h3>Carbon Footprint Assessment</h3>
+                    <p>Detailed analysis of your AI systems' environmental impact with actionable insights and custom recommendations for immediate improvement.</p>
+                </div>
+                <div class="solution-card">
+                    <h3>Optimization Strategies</h3>
+                    <p>Custom recommendations to reduce energy consumption while maintaining performance, backed by our proprietary efficiency metrics.</p>
+                </div>
+                <div class="solution-card">
+                    <h3>Green AI Certification</h3>
+                    <p>Third-party validation of your commitment to environmentally conscious AI, with transparent criteria and ongoing support.</p>
+                </div>
+                <div class="solution-card">
+                    <h3>Sustainable Infrastructure</h3>
+                    <p>Guidance on transitioning to green computing resources and renewable energy partners to power your AI initiatives responsibly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Make Your AI Sustainable?</h2>
+            <p>Join leading companies committed to environmentally responsible AI development and gain a competitive advantage while protecting our planet.</p>
+            <button class="primary-button">Get Started Today</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo">DataNova</div>
+                    <p>We're on a mission to make AI environmentally sustainable and help companies reduce their technological carbon footprint.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#hero">About Us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-group">
+                        <h4>Solutions</h4>
+                        <ul>
+                            <li><a href="#certification">Certification</a></li>
+                            <li><a href="#">Assessment</a></li>
+                            <li><a href="#">Consulting</a></li>
+                            <li><a href="#">Training</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-group">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#">Case Studies</a></li>
+                            <li><a href="#">Documentation</a></li>
+                            <li><a href="#">Whitepapers</a></li>
+                            <li><a href="#">Webinars</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 DataNova. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-icon">LinkedIn</a>
+                    <a href="#" class="social-icon">Twitter</a>
+                    <a href="#" class="social-icon">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
