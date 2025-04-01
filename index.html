@@ -146,12 +146,18 @@
 
         /* Hero Section */
         .hero {
-            padding: 140px 0 200px;
+            padding: 140px 0 240px;
             position: relative;
             overflow: hidden;
-            background-image: url('https://i.postimg.cc/WdkqVVL6/1-bRT412cqFtw-UwUWTexX9g.jpg');
+            background-image: url('images/greenai.png');
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            -ms-interpolation-mode: nearest-neighbor;
+            transform: translateZ(0);
+            backface-visibility: hidden;
             color: var(--text-white);
         }
 
@@ -162,7 +168,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to right, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.5) 60%, rgba(255, 255, 255, 0.3) 100%); /* Adjusted gradient overlay for new image */
+            background: linear-gradient(to right, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.6) 40%, rgba(255, 255, 255, 0.2) 100%);
             z-index: 1;
         }
 
@@ -185,12 +191,13 @@
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.92);
             padding: 60px;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
 
         .certification-content h2 {
@@ -251,12 +258,13 @@
             margin-bottom: 24px;
             color: var(--text-dark);
             letter-spacing: -1px;
-            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+            text-shadow: 0 2px 4px rgba(255, 255, 255, 0.7);
         }
 
         .hero-content h1 span {
             display: block;
             color: var(--primary-color);
+            text-shadow: 0 2px 4px rgba(255, 255, 255, 0.7);
         }
 
         .hero-content .subtitle {
@@ -265,7 +273,7 @@
             margin-bottom: 40px;
             max-width: 100%;
             line-height: 1.5;
-            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+            text-shadow: 0 2px 4px rgba(255, 255, 255, 0.7);
         }
 
         .cta-group {
@@ -531,58 +539,6 @@
             font-size: 14px;
         }
 
-        /* Solutions Section */
-        .solutions {
-            padding: 120px 0;
-            background-color: var(--background-white);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .solutions::after {
-            content: '';
-            position: absolute;
-            bottom: -10%;
-            right: -5%;
-            width: 700px;
-            height: 700px;
-            background: radial-gradient(circle, rgba(0, 191, 165, 0.08) 0%, rgba(0, 191, 165, 0) 70%);
-            border-radius: 50%;
-        }
-
-        .solutions-grid {
-            position: relative;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .solution-card {
-            background-color: var(--background-white);
-            padding: 36px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border-top: 4px solid var(--primary-color);
-        }
-
-        .solution-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .solution-card h3 {
-            margin-bottom: 16px;
-            font-size: 22px;
-            font-weight: 700;
-        }
-
-        .solution-card p {
-            color: var(--text-light);
-            font-size: 17px;
-            line-height: 1.6;
-        }
-
         /* CTA Section */
         .cta-section {
             padding: 120px 0;
@@ -726,7 +682,7 @@
         /* Responsive Design */
         @media (max-width: 991px) {
             .hero {
-                padding: 100px 0 140px;
+                padding: 100px 0 160px;
             }
             
             .hero-content h1 {
@@ -737,6 +693,11 @@
             .certification-section,
             .footer-content {
                 grid-template-columns: 1fr;
+            }
+            
+            .solutions-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
             }
             
             .hero-content,
@@ -810,6 +771,205 @@
                 font-size: 36px;
             }
         }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background-color: white;
+            width: 90%;
+            max-width: 500px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 40px;
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.3s;
+        }
+
+        .modal-overlay.active .modal {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--text-light);
+            border: none;
+            background: none;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .modal-close:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .modal-title {
+            margin-bottom: 24px;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.2);
+        }
+
+        .form-submit {
+            width: 100%;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .form-submit:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .form-message {
+            display: none;
+            text-align: center;
+            margin-top: 16px;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .form-message.success {
+            display: block;
+            background-color: rgba(76, 175, 80, 0.1);
+            color: var(--primary-dark);
+        }
+
+        .form-message.error {
+            display: block;
+            background-color: rgba(244, 67, 54, 0.1);
+            color: #d32f2f;
+        }
+
+        /* Solutions Section within Hero */
+        .solutions-section {
+            margin-top: 120px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .solutions-section .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            background-color: rgba(255, 255, 255, 0.92);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .solutions-section .section-header h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .solutions-section .section-header p {
+            font-size: 20px;
+            color: var(--text-light);
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .solution-card {
+            background-color: rgba(255, 255, 255, 0.92);
+            padding: 36px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-top: 4px solid var(--primary-color);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .solution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .solution-card h3 {
+            margin-bottom: 16px;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .solution-card p {
+            color: var(--text-light);
+            font-size: 17px;
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body>
@@ -859,6 +1019,27 @@
                     </div>
                 </div>
             </div>
+            
+            <div id="solutions" class="solutions-section">
+                <div class="section-header">
+                    <h2>Our Solutions</h2>
+                    <p>Comprehensive approaches to make your AI environmentally responsible</p>
+                </div>
+                <div class="solutions-grid">
+                    <div class="solution-card">
+                        <h3>Carbon Footprint Assessment</h3>
+                        <p>Detailed analysis of your AI systems' environmental impact with actionable insights and custom recommendations for immediate improvement.</p>
+                    </div>
+                    <div class="solution-card">
+                        <h3>Optimization Strategies</h3>
+                        <p>Custom recommendations to reduce energy consumption while maintaining performance, backed by our proprietary efficiency metrics.</p>
+                    </div>
+                    <div class="solution-card">
+                        <h3>Green AI Certification</h3>
+                        <p>Third-party validation of your commitment to environmentally conscious AI, with transparent criteria and ongoing support.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -898,33 +1079,6 @@
                             <p>CEO, Innovate AI</p>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="solutions" class="solutions">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Solutions</h2>
-                <p>Comprehensive approaches to make your AI environmentally responsible</p>
-            </div>
-            <div class="solutions-grid">
-                <div class="solution-card">
-                    <h3>Carbon Footprint Assessment</h3>
-                    <p>Detailed analysis of your AI systems' environmental impact with actionable insights and custom recommendations for immediate improvement.</p>
-                </div>
-                <div class="solution-card">
-                    <h3>Optimization Strategies</h3>
-                    <p>Custom recommendations to reduce energy consumption while maintaining performance, backed by our proprietary efficiency metrics.</p>
-                </div>
-                <div class="solution-card">
-                    <h3>Green AI Certification</h3>
-                    <p>Third-party validation of your commitment to environmentally conscious AI, with transparent criteria and ongoing support.</p>
-                </div>
-                <div class="solution-card">
-                    <h3>Sustainable Infrastructure</h3>
-                    <p>Guidance on transitioning to green computing resources and renewable energy partners to power your AI initiatives responsibly.</p>
                 </div>
             </div>
         </div>
@@ -985,5 +1139,99 @@
             </div>
         </div>
     </footer>
+
+    <!-- Modal for Contact Form -->
+    <div class="modal-overlay" id="formModal">
+        <div class="modal">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <h3 class="modal-title" id="modalTitle">Get Started with DataNova</h3>
+            <form id="contactForm" action="https://formspree.io/f/ignaciovinke@gmail.com" method="POST">
+                <input type="hidden" name="_subject" id="emailSubject" value="New DataNova Inquiry">
+                <input type="hidden" name="_next" value="https://greenai.today?submitted=true">
+                
+                <div class="form-group">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" id="name" name="name" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="company" class="form-label">Company</label>
+                    <input type="text" id="company" name="company" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" name="email" class="form-input" required>
+                </div>
+                
+                <button type="submit" class="form-submit">Submit</button>
+                
+                <div class="form-message" id="formMessage"></div>
+            </form>
+            <div style="margin-top: 20px; text-align: center; border-top: 1px solid #eee; padding-top: 20px;">
+                <p style="color: var(--text-light); margin-bottom: 10px;">Having trouble with the form? Contact us directly:</p>
+                <a href="mailto:ignaciovinke@gmail.com?subject=DataNova%20Inquiry" style="color: var(--primary-color); font-weight: 500;">ignaciovinke@gmail.com</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        const modalOverlay = document.getElementById('formModal');
+        const modalClose = document.getElementById('modalClose');
+        const modalTitle = document.getElementById('modalTitle');
+        const emailSubject = document.getElementById('emailSubject');
+        const contactForm = document.getElementById('contactForm');
+        const formMessage = document.getElementById('formMessage');
+        
+        // Get all buttons that should open the modal
+        const getStartedButtons = document.querySelectorAll('.cta-button, .primary-button');
+        
+        // Add click event to buttons
+        getStartedButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Prevent default action if it's a link
+                e.preventDefault();
+                
+                // Set modal title and subject based on which button was clicked
+                if (this.textContent.trim() === 'Get Certified') {
+                    modalTitle.textContent = 'Get Certified with DataNova';
+                    emailSubject.value = 'New Certification Request';
+                } else {
+                    modalTitle.textContent = 'Get Started with DataNova';
+                    emailSubject.value = 'New DataNova Inquiry';
+                }
+                
+                // Show modal
+                modalOverlay.classList.add('active');
+            });
+        });
+        
+        // Close modal when clicking the close button
+        modalClose.addEventListener('click', function() {
+            modalOverlay.classList.remove('active');
+        });
+        
+        // Close modal when clicking outside the modal
+        modalOverlay.addEventListener('click', function(e) {
+            if (e.target === modalOverlay) {
+                modalOverlay.classList.remove('active');
+            }
+        });
+        
+        // Check for URL parameter to show success message
+        window.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('submitted') === 'true') {
+                formMessage.textContent = 'Thank you! Your message has been sent successfully.';
+                formMessage.classList.add('success');
+                
+                // Show the thank you message for a few seconds
+                setTimeout(function() {
+                    formMessage.classList.remove('success');
+                }, 5000);
+            }
+        });
+    </script>
 </body>
 </html>
