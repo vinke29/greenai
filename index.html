@@ -834,9 +834,47 @@
             }
             
             .solutions-grid {
-                width: 100%;
-                padding: 0;
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
                 gap: 15px;
+                width: 100%;
+                padding: 0 0 20px 0; /* Add bottom padding for scrollbar */
+                -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+                scroll-snap-type: x mandatory; /* Optional: for better scroll positioning */
+                scrollbar-width: thin; /* For Firefox */
+            }
+            
+            .solutions-grid::-webkit-scrollbar {
+                height: 6px;
+            }
+            
+            .solutions-grid::-webkit-scrollbar-thumb {
+                background-color: rgba(0, 0, 0, 0.2);
+                border-radius: 6px;
+            }
+            
+            .solution-card {
+                flex: 0 0 85%;
+                min-width: 260px;
+                padding: 25px;
+                margin-bottom: 0;
+                scroll-snap-align: start; /* Optional: for better scroll positioning */
+                white-space: normal;
+                height: auto;
+            }
+            
+            .solution-card h3 {
+                font-size: 20px;
+                margin-bottom: 12px;
+                hyphens: auto;
+                -webkit-hyphens: auto;
+            }
+            
+            .solution-card p {
+                font-size: 16px;
+                hyphens: auto;
+                -webkit-hyphens: auto;
             }
         }
 
@@ -871,10 +909,12 @@
             }
             
             .solutions-grid {
-                gap: 12px;
+                padding: 0 0 15px 0;
             }
             
             .solution-card {
+                flex: 0 0 80%;
+                min-width: 240px;
                 padding: 20px;
             }
             
@@ -1108,12 +1148,16 @@
             font-size: 22px;
             font-weight: 700;
             color: var(--text-dark);
+            white-space: normal;
+            word-wrap: break-word;
         }
 
         .solution-card p {
             color: var(--text-light);
             font-size: 17px;
             line-height: 1.6;
+            white-space: normal;
+            word-wrap: break-word;
         }
     </style>
 </head>
